@@ -1,0 +1,8 @@
+请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
+
+function replaceSpace(str)
+{
+    var arr=str.split(' ');//字符串转数组，将空格换为逗号
+    var str=arr.join('%20');//数组转字符串，将逗号转换为%20
+    return str;
+}
