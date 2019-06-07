@@ -1,0 +1,14 @@
+/*function ListNode(x){
+    this.val = x;
+    this.next = null;
+}*/
+function printListFromTailToHead(head)//输入头结点
+{
+    var arr=[];
+    var node=head;//接收头结点为当前节点
+    while(node!=null){//当前结点不为空
+        arr.unshift(node.val);//将当前节点的值装到数组前面
+        node = node.next;//将当前节点等于当前节点的next，即当前节点变成下一节点
+    }
+    return arr;
+}
