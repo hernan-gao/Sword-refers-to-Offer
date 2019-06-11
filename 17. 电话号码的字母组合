@@ -1,0 +1,45 @@
+给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。
+
+给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
+
+示例:
+
+输入："23"
+输出：["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+
+说明:
+尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+
+var letterCombinations = function(digits) {
+    let word = ['','','abc','def','ghi','jkl','mno','pqrs','tuv','wxyz'];//以数组索引映射字母
+    let number = digits.split('');//将输入字符串转为数组"23"=>[2,3]
+    let code = [];//['abc','def','ghi']
+    number.forEach(item =>{//遍历number数组，作为word数组的索引，从而映射字母['abc','def','ghi']
+        code.push(word[item])
+    });
+    function comb(arr) {
+        let tmp = [];
+        for(let i = 0; i < arr[0].length ; i++){
+            for(let j = 0; j < arr[1].length ; j++){
+                tmp.push(arr[0][i]+arr[1][j]);//拼接的字符串加入数组tmp[ 'ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf' ]
+            }
+        }
+        arr.splice(0,2,tmp);//去掉传入数组的0、1索引处，取而代之数组tmp[tmp,'ghi']
+        if(arr.length>1){//如果传入数组长度大于1
+            comb(arr)//递归继续
+        }
+        else{//否则
+            return tmp//返回tmp
+        }
+        return arr[0]//返回传入数组的0索引
+    }
+    return comb(code)//返回函数comb结果，传入参数为数组code
+}
+
+
+IDE上可行，在leetCode上没有跑动，报错原因是for循环处的arr没有length属性，没有找到解决办法。
